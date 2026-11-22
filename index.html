@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alex Morgan | Senior Software Engineer & Tech Lead</title>
+  <meta name="description" content="Interactive Professional CV and Profile of Alex Morgan, Senior Software Engineer & Tech Lead specializing in modern web architectures and cloud systems.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-theme="dark" data-accent="indigo">
+  <!-- Top Reading Scroll Progress Bar -->
+  <div id="scrollProgress" class="scroll-progress-bar" aria-hidden="true"></div>
+
+  <!-- Background Ambient Glows -->
+  <div class="ambient-glow glow-1" aria-hidden="true"></div>
+  <div class="ambient-glow glow-2" aria-hidden="true"></div>
+
+  <!-- Top Action Toolbar -->
+  <nav class="action-bar no-print" aria-label="Quick Actions">
+    <div class="action-container">
+      <div class="status-badge" id="availabilityBadge" title="Click to view availability details">
+        <span class="status-dot"></span>
+        <span class="status-text">Available for new opportunities</span>
+      </div>
+
+      <!-- Accent Color Theme Picker -->
+      <div class="color-picker-group" aria-label="Select accent theme color">
+        <span class="picker-label">Accent:</span>
+        <div class="color-swatches">
+          <button class="color-swatch active" data-color="indigo" title="Indigo Theme" style="--swatch-color: #6366f1;"></button>
+          <button class="color-swatch" data-color="cyan" title="Cyan Theme" style="--swatch-color: #06b6d4;"></button>
+          <button class="color-swatch" data-color="emerald" title="Emerald Theme" style="--swatch-color: #10b981;"></button>
+          <button class="color-swatch" data-color="violet" title="Violet Theme" style="--swatch-color: #8b5cf6;"></button>
+          <button class="color-swatch" data-color="rose" title="Rose Theme" style="--swatch-color: #f43f5e;"></button>
+          <button class="color-swatch" data-color="amber" title="Amber Theme" style="--swatch-color: #f59e0b;"></button>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button id="shareCvBtn" class="btn btn-secondary" title="Share Profile / Show QR Code">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+          </svg>
+          <span class="btn-text">Share</span>
+        </button>
+
+        <button id="themeToggleBtn" class="btn btn-secondary" title="Switch Theme (Press 'D')">
+          <span class="icon" id="themeIcon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2"></path>
+              <path d="M12 20v2"></path>
+              <path d="m4.93 4.93 1.41 1.41"></path>
+              <path d="m17.66 17.66 1.41 1.41"></path>
+              <path d="M2 12h2"></path>
+              <path d="M20 12h2"></path>
+              <path d="m6.34 17.66-1.41 1.41"></path>
+              <path d="m19.07 4.93-1.41 1.41"></path>
+            </svg>
+          </span>
+          <span class="btn-text" id="themeText">Light</span>
+        </button>
+
+        <button id="printBtn" class="btn btn-secondary" title="Print or Save as PDF (Ctrl+P)">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
+          </svg>
+          <span class="btn-text">PDF</span>
+        </button>
+
+        <button id="hireMeBtn" class="btn btn-primary pulse-btn" title="Send a message or interview request">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m22 2-7 20-4-9-9-4Z"></path>
+            <path d="M22 2 11 13"></path>
+          </svg>
+          <span>Get in Touch</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Interactive Quick Search & Navigation Bar -->
+  <div class="search-filter-bar no-print">
+    <div class="search-container">
+      <div class="search-input-wrapper">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="globalSearchInput" placeholder="Live search: Try 'React', 'Kafka', 'Python', 'AWS', or 'Microservices'..." autocomplete="off">
+        <button id="clearSearchBtn" class="clear-search-btn" title="Clear filter" style="display: none;">&times;</button>
+      </div>
+      <div id="filterResultCount" class="filter-result-count" style="display: none;"></div>
+      
+      <!-- Quick Navigation Jump Links -->
+      <nav class="quick-nav-links" aria-label="Section shortcuts">
+        <a href="#summary-section" class="quick-link">Summary</a>
+        <a href="#experience-section" class="quick-link">Experience</a>
+        <a href="#projects-section" class="quick-link">Projects</a>
+        <a href="#skills-section" class="quick-link">Skills</a>
+        <a href="#education-section" class="quick-link">Education</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Main CV Container -->
+  <main class="cv-wrapper">
+    <div class="cv-card">
+      
+      <!-- HEADER / HERO SECTION -->
+      <header class="cv-header" id="summary-section">
+        <div class="profile-meta">
+          <div class="avatar-container interactive-avatar" id="avatarBox" title="Click to view full portrait">
+            <div class="avatar-ring">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" 
+                   alt="Alex Morgan Portrait" 
+                   class="avatar-img"
+                   loading="lazy" 
+                   onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'160\' height=\'160\' viewBox=\'0 0 24 24\' fill=\'%236366f1\'><circle cx=\'12\' cy=\'8\' r=\'4\' fill=\'%23fff\'/><path d=\'M4 20c0-4 4-6 8-6s8 2 8 6\' fill=\'%23fff\'/></svg>'">
+            </div>
+            <div class="verified-badge" title="Verified Senior Professional">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+          </div>
+
+          <div class="identity-info">
+            <div class="title-row">
+              <h1 class="candidate-name">Alex Morgan</h1>
+              <span class="role-tag interactive-badge" id="hireStatusBadge">Open to Remote / Relocation</span>
+            </div>
+            <h2 class="professional-headline">Lead Full-Stack Engineer &amp; System Architect</h2>
+            
+            <p class="tagline">
+              Crafting high-throughput distributed applications, intuitive user experiences, and scalable cloud infrastructure for over 8+ years.
+            </p>
+
+            <!-- Contact Information Bar -->
+            <div class="contact-chips">
+              <a href="mailto:alex.morgan.dev@example.com" class="chip interactive-chip" id="copyEmail" title="Click to copy email">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                <span>alex.morgan@example.com</span>
+                <span class="copy-hint">Copy</span>
+              </a>
+
+              <a href="tel:+14155552671" class="chip interactive-chip" id="copyPhone" title="Click to copy phone">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+                <span>+1 (415) 555-2671</span>
+                <span class="copy-hint">Copy</span>
+              </a>
+
+              <span class="chip">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>San Francisco, CA</span>
+              </span>
+
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="chip link-chip interactive-chip">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+                <span>linkedin.com/in/alexmorgan</span>
+              </a>
+
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="chip link-chip interactive-chip">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+                <span>github.com/alexmorgan</span>
+              </a>
+
+              <a href="https://alexmorgan.design" target="_blank" rel="noopener noreferrer" class="chip link-chip interactive-chip">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg>
+                <span>alexmorgan.design</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Highlight Key Metric Cards with Interactive 3D Tilt & Count-up Animation -->
+        <div class="metrics-grid" id="metricsContainer">
+          <div class="metric-card tilt-card" data-tilt>
+            <span class="metric-number animated-counter" data-target="8" data-suffix="+">0</span>
+            <span class="metric-label">Years of Experience</span>
+          </div>
+          <div class="metric-card tilt-card" data-tilt>
+            <span class="metric-number animated-counter" data-target="42" data-suffix="+">0</span>
+            <span class="metric-label">Cloud Projects Shipped</span>
+          </div>
+          <div class="metric-card tilt-card" data-tilt>
+            <span class="metric-number animated-counter" data-target="3.2" data-suffix="M" data-decimals="1">0</span>
+            <span class="metric-label">Active Users Served</span>
+          </div>
+          <div class="metric-card tilt-card" data-tilt>
+            <span class="metric-number animated-counter" data-target="99.98" data-suffix="%" data-decimals="2">0</span>
+            <span class="metric-label">Uptime Architecture SLA</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- TWO COLUMN LAYOUT BODY -->
+      <div class="cv-body-grid">
+        
+        <!-- LEFT COLUMN (Main Content: Experience & Projects) -->
+        <div class="primary-column">
+          
+          <!-- Summary Section -->
+          <section class="cv-section" id="executive-summary">
+            <div class="section-heading">
+              <span class="section-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </span>
+              <h3>Executive Summary</h3>
+            </div>
+            <p class="summary-paragraph">
+              High-impact Software Engineer and Architect with a proven track record of engineering resilient, event-driven distributed systems and delighting end-users with frictionless web interfaces. Specialized in TypeScript, Python, React, and cloud-native Kubernetes deployments. Passionate about developer ergonomics, mentoring high-velocity engineering squads, and driving performance optimizations that directly elevate business KPIs.
+            </p>
+          </section>
+
+          <!-- Work Experience Section with View Toggle -->
+          <section class="cv-section" id="experience-section">
+            <div class="section-heading section-heading-with-actions">
+              <div class="heading-left">
+                <span class="section-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                  </svg>
+                </span>
+                <h3>Work Experience</h3>
+              </div>
+
+              <!-- Interactive Timeline View Toggle -->
+              <div class="timeline-controls no-print">
+                <span class="control-label">View:</span>
+                <div class="toggle-btn-pill">
+                  <button id="viewDetailedBtn" class="pill-btn active" title="Show all achievement bullets">Detailed</button>
+                  <button id="viewCompactBtn" class="pill-btn" title="Compact summary view">Compact</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="timeline" id="experienceTimeline">
+              <!-- Item 1 -->
+              <article class="timeline-item searchable-item" data-keywords="novacloud staff software architect lead typescript react node.js kafka aws eks terraform microservices golang go hybrid">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="item-header">
+                    <div>
+                      <h4 class="item-title">Staff Software Architect &amp; Team Lead</h4>
+                      <div class="item-company">NovaCloud Technologies &bull; San Francisco, CA (Hybrid)</div>
+                    </div>
+                    <span class="item-date">2023 &mdash; Present</span>
+                  </div>
+                  <ul class="achievement-list">
+                    <li>Led technical architecture and spearheaded a team of 12 engineers migrating a monolithic payments backend into a modular micro-services event mesh using Go, Node.js, and Kafka.</li>
+                    <li>Decreased p99 payment processing latency from 450ms to 62ms while handling over 14,000 requests per second at peak load.</li>
+                    <li>Established comprehensive CI/CD pipelines with GitHub Actions, reducing release cycle time by 65% and achieving zero downtime deployments.</li>
+                    <li>Designed an internal design system component library in React/Tailwind used across 6 cross-functional engineering teams.</li>
+                  </ul>
+                  <div class="skill-tags">
+                    <span class="tag filter-tag" data-filter="typescript">TypeScript</span>
+                    <span class="tag filter-tag" data-filter="react">React</span>
+                    <span class="tag filter-tag" data-filter="node.js">Node.js</span>
+                    <span class="tag filter-tag" data-filter="kafka">Kafka</span>
+                    <span class="tag filter-tag" data-filter="aws">AWS / EKS</span>
+                    <span class="tag filter-tag" data-filter="terraform">Terraform</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Item 2 -->
+              <article class="timeline-item searchable-item" data-keywords="starlight senior full-stack engineer python fastapi react postgresql redis docker websockets webgl remote">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="item-header">
+                    <div>
+                      <h4 class="item-title">Senior Full-Stack Engineer</h4>
+                      <div class="item-company">Starlight Analytics Platform &bull; New York, NY (Remote)</div>
+                    </div>
+                    <span class="item-date">2020 &mdash; 2023</span>
+                  </div>
+                  <ul class="achievement-list">
+                    <li>Engineered customer-facing real-time analytics dashboards streaming multi-gigabyte data sets via WebSockets and WebGL canvas rendering.</li>
+                    <li>Built optimized Python and FastAPI microservices with Redis caching, supporting over 2.5 million daily active corporate queries.</li>
+                    <li>Mentored 5 junior and mid-level engineers, resulting in 2 internal promotions within an 18-month timeframe.</li>
+                    <li>Pioneered test automation strategies, uplifting overall automated test coverage from 44% to 92%.</li>
+                  </ul>
+                  <div class="skill-tags">
+                    <span class="tag filter-tag" data-filter="react">React 18</span>
+                    <span class="tag filter-tag" data-filter="python">Python</span>
+                    <span class="tag filter-tag" data-filter="fastapi">FastAPI</span>
+                    <span class="tag filter-tag" data-filter="postgresql">PostgreSQL</span>
+                    <span class="tag filter-tag" data-filter="redis">Redis</span>
+                    <span class="tag filter-tag" data-filter="docker">Docker</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Item 3 -->
+              <article class="timeline-item searchable-item" data-keywords="vanguard frontend engineer javascript vue.js sass css grid accessibility wcag rest apis">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="item-header">
+                    <div>
+                      <h4 class="item-title">Frontend Engineer</h4>
+                      <div class="item-company">Vanguard Digital Studio &bull; Austin, TX</div>
+                    </div>
+                    <span class="item-date">2018 &mdash; 2020</span>
+                  </div>
+                  <ul class="achievement-list">
+                    <li>Developed responsive client interfaces for enterprise FinTech and healthcare clients with strict WCAG 2.1 AA accessibility compliance.</li>
+                    <li>Reduced initial page bundle payloads by 48% using code-splitting, tree-shaking, and next-gen image pipelines.</li>
+                  </ul>
+                  <div class="skill-tags">
+                    <span class="tag filter-tag" data-filter="javascript">JavaScript (ES6+)</span>
+                    <span class="tag filter-tag" data-filter="vue">Vue.js</span>
+                    <span class="tag filter-tag" data-filter="css">CSS Grid / SASS</span>
+                    <span class="tag filter-tag" data-filter="rest">REST APIs</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- Featured Projects Section with Interactive Category Filter & Detail Modal -->
+          <section class="cv-section" id="projects-section">
+            <div class="section-heading section-heading-with-actions">
+              <div class="heading-left">
+                <span class="section-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                    <polyline points="2 17 12 22 22 17"></polyline>
+                    <polyline points="2 12 12 17 22 12"></polyline>
+                  </svg>
+                </span>
+                <h3>Featured Key Projects</h3>
+              </div>
+
+              <!-- Project Category Tabs -->
+              <div class="project-filters no-print">
+                <button class="project-filter-btn active" data-category="all">All</button>
+                <button class="project-filter-btn" data-category="systems">Systems / Cloud</button>
+                <button class="project-filter-btn" data-category="frontend">Frontend / UI</button>
+                <button class="project-filter-btn" data-category="fullstack">Full-Stack</button>
+              </div>
+            </div>
+
+            <div class="projects-grid" id="projectsGrid">
+              <!-- Project 1 -->
+              <div class="project-card tilt-card searchable-item" data-category="systems" data-keywords="hyperscale gateway rust redis websockets reverse proxy rate limiter api" data-project-id="hyperscale">
+                <div class="project-card-inner">
+                  <div class="project-header">
+                    <h4 class="project-title">HyperScale Gateway</h4>
+                    <div class="project-actions">
+                      <button class="icon-btn-view" title="View Full Project Architecture" data-modal="hyperscale">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                          <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                      </button>
+                      <a href="https://github.com" target="_blank" rel="noopener" class="project-link" title="View Source on GitHub">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                          <polyline points="15 3 21 3 21 9"></polyline>
+                          <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                  <p class="project-desc">
+                    Open-source lightweight API rate-limiter and reverse proxy handling 50k+ req/sec built with Rust &amp; Redis token bucket algorithm.
+                  </p>
+                  <div class="project-footer">
+                    <div class="skill-tags">
+                      <span class="tag filter-tag" data-filter="rust">Rust</span>
+                      <span class="tag filter-tag" data-filter="redis">Redis</span>
+                      <span class="tag filter-tag" data-filter="websockets">WebSockets</span>
+                    </div>
+                    <button class="btn-text-action" data-modal="hyperscale">Case Study &rarr;</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project 2 -->
+              <div class="project-card tilt-card searchable-item" data-category="frontend" data-keywords="pulse design system typescript react tailwind storybook accessible components" data-project-id="pulse">
+                <div class="project-card-inner">
+                  <div class="project-header">
+                    <h4 class="project-title">Pulse Design System</h4>
+                    <div class="project-actions">
+                      <button class="icon-btn-view" title="View Full Project Architecture" data-modal="pulse">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                          <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                      </button>
+                      <a href="https://github.com" target="_blank" rel="noopener" class="project-link" title="View Source on GitHub">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                          <polyline points="15 3 21 3 21 9"></polyline>
+                          <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                  <p class="project-desc">
+                    Zero-dependency accessible component toolkit with automated token pipeline, Storybook documentation, and dark mode tokens.
+                  </p>
+                  <div class="project-footer">
+                    <div class="skill-tags">
+                      <span class="tag filter-tag" data-filter="typescript">TypeScript</span>
+                      <span class="tag filter-tag" data-filter="react">React</span>
+                      <span class="tag filter-tag" data-filter="tailwind">Tailwind</span>
+                      <span class="tag filter-tag" data-filter="storybook">Storybook</span>
+                    </div>
+                    <button class="btn-text-action" data-modal="pulse">Case Study &rarr;</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project 3 -->
+              <div class="project-card tilt-card searchable-item" data-category="fullstack" data-keywords="streamflow live analytics python fastapi react websockets time series streaming" data-project-id="streamflow">
+                <div class="project-card-inner">
+                  <div class="project-header">
+                    <h4 class="project-title">StreamFlow Analytics</h4>
+                    <div class="project-actions">
+                      <button class="icon-btn-view" title="View Full Project Architecture" data-modal="streamflow">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                          <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                      </button>
+                      <a href="https://github.com" target="_blank" rel="noopener" class="project-link" title="View Source on GitHub">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                          <polyline points="15 3 21 3 21 9"></polyline>
+                          <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                  <p class="project-desc">
+                    Real-time telemetry event streaming pipeline processing 1M events/min with interactive charts and automated anomaly detection.
+                  </p>
+                  <div class="project-footer">
+                    <div class="skill-tags">
+                      <span class="tag filter-tag" data-filter="python">Python</span>
+                      <span class="tag filter-tag" data-filter="react">React</span>
+                      <span class="tag filter-tag" data-filter="kafka">Kafka</span>
+                      <span class="tag filter-tag" data-filter="postgresql">TimescaleDB</span>
+                    </div>
+                    <button class="btn-text-action" data-modal="streamflow">Case Study &rarr;</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project 4 -->
+              <div class="project-card tilt-card searchable-item" data-category="systems" data-keywords="cloudmesh mesh orchestrator go golang kubernetes envoy istio devops" data-project-id="cloudmesh">
+                <div class="project-card-inner">
+                  <div class="project-header">
+                    <h4 class="project-title">CloudMesh Controller</h4>
+                    <div class="project-actions">
+                      <button class="icon-btn-view" title="View Full Project Architecture" data-modal="cloudmesh">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                          <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                      </button>
+                      <a href="https://github.com" target="_blank" rel="noopener" class="project-link" title="View Source on GitHub">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                          <polyline points="15 3 21 3 21 9"></polyline>
+                          <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                  <p class="project-desc">
+                    Kubernetes CRD Operator and Envoy sidecar manager providing zero-trust mTLS encryption and intelligent canary traffic splitting.
+                  </p>
+                  <div class="project-footer">
+                    <div class="skill-tags">
+                      <span class="tag filter-tag" data-filter="go">Go</span>
+                      <span class="tag filter-tag" data-filter="kubernetes">Kubernetes</span>
+                      <span class="tag filter-tag" data-filter="terraform">Terraform</span>
+                    </div>
+                    <button class="btn-text-action" data-modal="cloudmesh">Case Study &rarr;</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- RIGHT COLUMN (Sidebar: Skills, Education, Certifications, Languages) -->
+        <aside class="sidebar-column">
+          
+          <!-- Technical Skills with Live Search Filter -->
+          <section class="cv-section" id="skills-section">
+            <div class="section-heading section-heading-with-actions">
+              <div class="heading-left">
+                <span class="section-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                  </svg>
+                </span>
+                <h3>Core Competencies</h3>
+              </div>
+              <span class="skills-count-pill" id="skillsCountBadge">20 Skills</span>
+            </div>
+
+            <!-- Skill Search Box -->
+            <div class="skill-search-box no-print">
+              <input type="text" id="skillSearchInput" placeholder="Filter competencies..." autocomplete="off">
+            </div>
+
+            <div class="skill-group" data-group="languages">
+              <div class="group-title">Languages &amp; Runtimes</div>
+              <div class="skill-pills">
+                <span class="skill-pill highlight filter-tag" data-filter="typescript">TypeScript</span>
+                <span class="skill-pill highlight filter-tag" data-filter="javascript">JavaScript</span>
+                <span class="skill-pill highlight filter-tag" data-filter="python">Python</span>
+                <span class="skill-pill filter-tag" data-filter="go">Go (Golang)</span>
+                <span class="skill-pill filter-tag" data-filter="rust">Rust</span>
+                <span class="skill-pill filter-tag" data-filter="sql">SQL / PostgreSQL</span>
+                <span class="skill-pill filter-tag" data-filter="html">HTML5 &amp; CSS3</span>
+              </div>
+            </div>
+
+            <div class="skill-group" data-group="frontend">
+              <div class="group-title">Frontend Frameworks &amp; Web</div>
+              <div class="skill-pills">
+                <span class="skill-pill highlight filter-tag" data-filter="react">React &bull; Next.js</span>
+                <span class="skill-pill filter-tag" data-filter="vue">Vue.js</span>
+                <span class="skill-pill filter-tag" data-filter="tailwind">Tailwind CSS</span>
+                <span class="skill-pill filter-tag" data-filter="redux">Redux &bull; Zustand</span>
+                <span class="skill-pill filter-tag" data-filter="graphql">GraphQL &bull; Apollo</span>
+                <span class="skill-pill filter-tag" data-filter="vite">Webpack &bull; Vite</span>
+              </div>
+            </div>
+
+            <div class="skill-group" data-group="backend">
+              <div class="group-title">Backend &amp; Distributed Systems</div>
+              <div class="skill-pills">
+                <span class="skill-pill highlight filter-tag" data-filter="node.js">Node.js / Express</span>
+                <span class="skill-pill filter-tag" data-filter="fastapi">FastAPI &bull; Django</span>
+                <span class="skill-pill filter-tag" data-filter="grpc">gRPC &bull; Protobuf</span>
+                <span class="skill-pill highlight filter-tag" data-filter="kafka">Apache Kafka</span>
+                <span class="skill-pill filter-tag" data-filter="redis">Redis Cache</span>
+              </div>
+            </div>
+
+            <div class="skill-group" data-group="devops">
+              <div class="group-title">DevOps &amp; Cloud Infrastructure</div>
+              <div class="skill-pills">
+                <span class="skill-pill highlight filter-tag" data-filter="aws">AWS (ECS, Lambda, S3)</span>
+                <span class="skill-pill filter-tag" data-filter="gcp">Google Cloud Platform</span>
+                <span class="skill-pill highlight filter-tag" data-filter="docker">Docker &bull; Kubernetes</span>
+                <span class="skill-pill filter-tag" data-filter="terraform">Terraform &bull; IaC</span>
+                <span class="skill-pill filter-tag" data-filter="cicd">CI/CD (GitHub Actions)</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Education -->
+          <section class="cv-section" id="education-section">
+            <div class="section-heading">
+              <span class="section-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                  <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                </svg>
+              </span>
+              <h3>Education</h3>
+            </div>
+
+            <div class="education-block tilt-card" data-tilt>
+              <h4 class="school-degree">B.S. in Computer Science</h4>
+              <div class="school-name">University of California, Berkeley</div>
+              <div class="school-meta">Graduated Magna Cum Laude &bull; 2014 &mdash; 2018</div>
+              <p class="school-detail">Dean's Honor List, Specialization in Distributed Systems &amp; Human-Computer Interaction.</p>
+            </div>
+          </section>
+
+          <!-- Certifications -->
+          <section class="cv-section">
+            <div class="section-heading">
+              <span class="section-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="7"></circle>
+                  <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                </svg>
+              </span>
+              <h3>Certifications</h3>
+            </div>
+
+            <ul class="cert-list">
+              <li class="cert-item interactive-cert" data-badge="AWS Solutions Architect">
+                <div class="cert-bullet"></div>
+                <div>
+                  <div class="cert-title">AWS Certified Solutions Architect</div>
+                  <div class="cert-issuer">Amazon Web Services &bull; 2023 &mdash; 2026</div>
+                </div>
+              </li>
+              <li class="cert-item interactive-cert" data-badge="Kubernetes Administrator">
+                <div class="cert-bullet"></div>
+                <div>
+                  <div class="cert-title">Certified Kubernetes Administrator (CKA)</div>
+                  <div class="cert-issuer">Cloud Native Computing Foundation &bull; 2022</div>
+                </div>
+              </li>
+              <li class="cert-item interactive-cert" data-badge="Google Cloud Architect">
+                <div class="cert-bullet"></div>
+                <div>
+                  <div class="cert-title">Google Professional Cloud Architect</div>
+                  <div class="cert-issuer">Google Cloud &bull; 2021</div>
+                </div>
+              </li>
+            </ul>
+          </section>
+
+          <!-- Languages & Honors with Interactive Hover -->
+          <section class="cv-section">
+            <div class="section-heading">
+              <span class="section-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg>
+              </span>
+              <h3>Languages &amp; Passions</h3>
+            </div>
+
+            <div class="language-bars">
+              <div class="lang-row">
+                <span class="lang-name">English</span>
+                <span class="lang-level">Native / Bilingual (100%)</span>
+              </div>
+              <div class="progress-track" title="Native Proficiency: 100%"><div class="progress-fill" style="width: 100%;"></div></div>
+
+              <div class="lang-row">
+                <span class="lang-name">Spanish</span>
+                <span class="lang-level">Professional Working (85%)</span>
+              </div>
+              <div class="progress-track" title="Professional Proficiency: 85%"><div class="progress-fill" style="width: 85%;"></div></div>
+
+              <div class="lang-row">
+                <span class="lang-name">French</span>
+                <span class="lang-level">Conversational (60%)</span>
+              </div>
+              <div class="progress-track" title="Conversational: 60%"><div class="progress-fill" style="width: 60%;"></div></div>
+            </div>
+
+            <div class="passions-list">
+              <span class="passion-tag filter-tag" data-filter="open source">&bull; Open Source Contributor</span>
+              <span class="passion-tag filter-tag" data-filter="conference">&bull; Tech Conference Speaker</span>
+              <span class="passion-tag">&bull; Marathons &amp; Cycling</span>
+            </div>
+          </section>
+
+        </aside>
+
+      </div>
+
+      <!-- CV FOOTER -->
+      <footer class="cv-footer">
+        <p>References and detailed architectural case studies available upon request.</p>
+        <p class="footer-sub">Updated for 2026 &bull; Fully Interactive HTML5, Modern CSS &amp; Vanilla JavaScript</p>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       INTERACTIVE MODALS & OVERLAYS
+       ======================================================================== -->
+
+  <!-- 1. Hire Me / Contact Modal -->
+  <div class="modal-backdrop" id="contactModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span class="modal-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m22 2-7 20-4-9-9-4Z"></path>
+              <path d="M22 2 11 13"></path>
+            </svg>
+          </span>
+          <div>
+            <h3 id="contactModalTitle">Get In Touch with Alex</h3>
+            <p class="modal-sub">Expected response time: within 24 hours</p>
+          </div>
+        </div>
+        <button class="modal-close-btn" id="closeContactModal" aria-label="Close dialog">&times;</button>
+      </div>
+
+      <form id="contactForm" class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="contactName">Your Name *</label>
+            <input type="text" id="contactName" required placeholder="e.g. Sarah Jenkins">
+          </div>
+          <div class="form-group">
+            <label for="contactEmail">Work Email *</label>
+            <input type="email" id="contactEmail" required placeholder="sarah@company.com">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inquiryType">Opportunity Type</label>
+          <select id="inquiryType">
+            <option value="Full-time Senior / Lead Role">Full-time Senior / Staff Role</option>
+            <option value="Consulting / Architecture Advisory">Technical Consulting / Advisory</option>
+            <option value="Contract / Fractional Tech Lead">Contract / Fractional Tech Lead</option>
+            <option value="Conference Speaking / Podcast">Conference Speaking / Workshop</option>
+            <option value="General Hello">General Inquiry / Coffee Chat</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="contactMessage">Message *</label>
+          <textarea id="contactMessage" rows="4" required placeholder="Tell me about your team, tech stack, and goals..."></textarea>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="cancelContactModal">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="sendContactBtn">
+            <span>Send Message</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. Share CV / QR Code Modal -->
+  <div class="modal-backdrop" id="shareModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="shareModalTitle">
+    <div class="modal-dialog modal-dialog-sm text-center">
+      <div class="modal-header">
+        <h3 id="shareModalTitle">Share CV &amp; Profile</h3>
+        <button class="modal-close-btn" id="closeShareModal" aria-label="Close dialog">&times;</button>
+      </div>
+
+      <div class="share-modal-body">
+        <p class="qr-description">Scan with your mobile camera to open this CV immediately on your smartphone:</p>
+        <div class="qr-canvas-wrapper">
+          <canvas id="qrCanvas" width="180" height="180"></canvas>
+        </div>
+
+        <div class="share-url-box">
+          <input type="text" id="shareUrlInput" readonly value="https://alexmorgan.design">
+          <button id="copyShareUrlBtn" class="btn btn-primary btn-sm">Copy Link</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Project Detail / Architecture Case Study Modal -->
+  <div class="modal-backdrop" id="projectModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
+    <div class="modal-dialog modal-dialog-lg">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span class="modal-icon project-modal-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+          </span>
+          <div>
+            <h3 id="projectModalTitle">Project Architecture Case Study</h3>
+            <span class="modal-category-tag" id="projectModalCategory">Distributed Systems</span>
+          </div>
+        </div>
+        <button class="modal-close-btn" id="closeProjectModal" aria-label="Close dialog">&times;</button>
+      </div>
+
+      <div class="modal-body" id="projectModalBody">
+        <!-- Content injected dynamically via script.js -->
+      </div>
+
+      <div class="modal-footer" id="projectModalFooter">
+        <a href="https://github.com" target="_blank" rel="noopener" class="btn btn-secondary" id="projectModalGithub">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+          </svg>
+          <span>View GitHub Repository</span>
+        </a>
+        <button class="btn btn-primary" id="closeProjectModalFooter">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Back to Top Button -->
+  <button id="backToTopBtn" class="back-to-top-btn no-print" title="Back to top" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- Confetti Canvas Overlay for Celebrations -->
+  <canvas id="confettiCanvas" class="confetti-canvas" aria-hidden="true"></canvas>
+
+  <!-- Interactive Toast Notification -->
+  <div id="toast" class="toast" role="alert" aria-live="polite">
+    <span id="toastMessage">Email copied to clipboard!</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
